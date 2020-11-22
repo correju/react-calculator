@@ -1,0 +1,17 @@
+.button {
+    flex: 1 1 auto;
+    background-color: #ccc;
+    font-size: 6rem;
+    width: 25%;
+}
+.button:last-child {
+    color: white;
+    font-weight: 700;
+    background-color: orange;
+}
+.button:active{
+    background-color: red;
+}
+.button.zero {
+    width: 50%;
+}

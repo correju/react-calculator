@@ -1,0 +1,9 @@
+.button-panel {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+}
+.button-row {
+    display: flex;
+    flex-flow: row wrap;
+}
