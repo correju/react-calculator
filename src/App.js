@@ -1,12 +1,16 @@
 import Calculator from './components/Calculator'
 import {createStore} from 'redux'
+import {Provider} from 'react-redux'
 import calculate from './helpers/calculate'
+import defaultValue from './helpers/default'
 
-// const store = createStore((state= {}) => state, defaultValue)
+const store = createStore(calculate, {calc: defaultValue})
 
 function App() {
   return (
-    <Calculator />
+    <Provider store={store}>
+      <Calculator />
+    </Provider>
   );
 }
 

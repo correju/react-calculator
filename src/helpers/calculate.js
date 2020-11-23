@@ -1,52 +1,75 @@
 import Calculator from "../components/Calculator";
+import defaultValue from './default'
 import operate from './operate'
 const getcurrentValue = (first) => first ? 'value1' : 'value2'
+const validActions = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "0",
+  "÷",
+  "+",
+  "-",
+  "x",
+  "+/-",
+  "=",
+  ".",
+  "AC"
+];
 
-const calculate = ({state={}, buttonName, defaultValue}) => {
-  const value = Number(buttonName)
-  const currentValue = getcurrentValue(state.first)
-  if (Number.isInteger(value)) {
-      const number = state[currentValue] === 0 ? value : Number(`${state[currentValue]}${buttonName}`)
-      state = {
-          ...state,
-          [currentValue]: number,
-          value: number}
-  } else {
-      state = operator[buttonName](buttonName, state, defaultValue)
+const calculate = (state, action) => {
+  const newState = validActions.includes(action.type) ?
+    {
+      ...state,
+      calc: operator[action.type](state.calc, action.type)
+    } : state
+    return newState
+}
+
+const isNumber = (calc, type) => {
+  const value = Number(type)
+  const currentValue = getcurrentValue(calc.first)
+  const number = calc[currentValue] === 0 ?
+  value : Number(`${calc[currentValue]}${type}`)
+  return calc = {
+    ...calc,
+    [currentValue]: number,
+    value: number
   }
-  return state
 }
 
 const operator = {
-  "÷": (val, state) => {
-    return {...state, first: false, operator: "÷"}
-  },
-  "+": (val, state) => {
-    return {...state, first: false, operator: "+"}
-  },
-  "-": (val, state) => {
-    return {...state, first: false, operator: "-"}
-  },
-  "x": (val, state) => {
-    return {...state, first: false, operator: "x"}
-  },
-  "+/-": (val, state) => {
-    const currentValue = getcurrentValue(state.first)
+  "1": (calc, type) => isNumber(calc, type),
+  "2": (calc, type) => isNumber(calc, type),
+  "3": (calc, type) => isNumber(calc, type),
+  "4": (calc, type) => isNumber(calc, type),
+  "5": (calc, type) => isNumber(calc, type),
+  "6": (calc, type) => isNumber(calc, type),
+  "7": (calc, type) => isNumber(calc, type),
+  "8": (calc, type) => isNumber(calc, type),
+  "9": (calc, type) => isNumber(calc, type),
+  "0": (calc, type) => isNumber(calc, type),
+  "÷": (calc, type) => ({...calc, first: false, operator: type}),
+  "+": (calc, type) => ({...calc, first: false, operator: type}),
+  "-": (calc, type) => ({...calc, first: false, operator: type}),
+  "x": (calc, type) => ({...calc, first: false, operator: type}),
+  "+/-": (calc, action) => {
+    const currentValue = getcurrentValue(calc.first)
     return {
-      ...state,
-      [currentValue]: (state[currentValue]*-1),
-      value: (state[currentValue]*-1)
+      ...calc,
+      [currentValue]: (calc[currentValue]*-1),
+      value: (calc[currentValue]*-1)
     }
   },
-  "=": (val, state, defaultValue) => {
-    return operate(state, defaultValue)
-  },
-  ".": (val, state) => {
-    return state
-  },
-  "AC": (val, state, defaultValue) => {
-    return {...defaultValue}
-  }
+  "=": (calc) => operate(calc, defaultValue),
+  ".": (calc) => calc,
+  "AC": (calc) => ({...defaultValue})
 }
 
 export default calculate
