@@ -1,7 +1,5 @@
 import Panel from '../Panel'
-import Button from '../Panel'
 import './index.css'
-import React, { useState } from "react"
 import {connect} from 'react-redux'
 import './index.css'
 

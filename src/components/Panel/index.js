@@ -1,7 +1,7 @@
 import Button from '../Button'
 import './index.css'
 
-export default  (props) => {
+const Panel = (props) => {
     const clickHandler = (buttonName) => props.clickHandler(buttonName)
     return <div className="button-panel">
     <div className="button-row">
@@ -34,3 +34,5 @@ export default  (props) => {
     </div>
   </div>
 }
+
+export default Panel
