@@ -4,7 +4,9 @@ const defaultValue = {
     operator: null,
     point: false,
     value: 0,
-    first: true
+    first: true,
+    dot: false,
+    dotSet: false
 }
 
 export default defaultValue
