@@ -3,11 +3,9 @@ import Button from '../Panel'
 import './index.css'
 import React, { useState } from "react"
 import {connect} from 'react-redux'
-import calculate from '../../helpers/calculate'
-import defaultValue from '../../helpers/default'
 import './index.css'
 
-const mapStateToProps = state => state.calc
+const mapStateToProps = state => state.calculate
 
 const Calculator = ({value, dispatch}) => {
   const clickHandler = (buttonName) => {

@@ -1,24 +1,10 @@
-const operate = (state, defaultValue) => {
-  return operator[state.operator](state, defaultValue)
-}
+const operate = (value1, value2, operator) => operations[operator](value1, value2)
 
-const operator = {
-  "÷": (state, defaultValue) => ({
-    ...defaultValue,
-    value: state.value1 / state.value2
-  }),
-  "+": (state, defaultValue) => ({
-    ...defaultValue,
-    value: state.value1 + state.value2
-  }),
-  "-": (state, defaultValue) => ({
-    ...defaultValue,
-    value: state.value1 - state.value2
-  }),
-  "x": (state, defaultValue) => (
-    {...defaultValue,
-      value: state.value1 * state.value2
-  })
+const operations = {
+  "÷": (value1, value2) => value1 / value2,
+  "+": (value1, value2) => value1 + value2,
+  "-": (value1, value2) => value1 - value2,
+  "x": (value1, value2) => value1 * value2
 }
 
 export default operate
