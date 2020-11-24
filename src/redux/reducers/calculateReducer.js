@@ -19,7 +19,6 @@ const isNumber = (state, type) => {
   const number = state[currentValue] === 0 ?
   value : Number(`${state[currentValue]}${type}`)
   return {
-
     [currentValue]: number,
     value: number
   }
