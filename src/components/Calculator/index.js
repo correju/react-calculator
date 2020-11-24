@@ -10,7 +10,7 @@ const Calculator = ({value, dispatch}) => {
     dispatch({type: buttonName})
   }
   return <div className="container">
-    <div className="display">{value}</div>
+    <div className="display">{value.toString() === "Infinity" ?  "Err" : value}</div>
     <Panel clickHandler={clickHandler} />
   </div>
 }
