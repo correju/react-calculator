@@ -1,28 +1,9 @@
 import defaultValue from '../../helpers/defaultValue'
 import operate from '../../helpers/operate'
 const getcurrentValue = (first) => first ? 'value1' : 'value2'
-const validActions = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "0",
-  "÷",
-  "+",
-  "-",
-  "x",
-  "+/-",
-  "=",
-  ".",
-  "AC"
-];
 
 const calculate = (state=defaultValue, action) => {
+  const validActions = Object.keys(operator)
   const newState = validActions.includes(action.type) ?
     {
       ...state,
